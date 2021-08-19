@@ -1,13 +1,13 @@
 import React from "react";
-
-function YourBotArmy({ bots }) {
+import BotCard from "./BotCard"
+function YourBotArmy({ bots, handleClick }) {
   //your bot army code here...
 
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
         <div className="row bot-army-row">
-          {bots}
+          {bots.map(bot => <BotCard key={bot.id} bot={bot} handleClick={handleClick} />)}
           Your Bot Army
         </div>
       </div>

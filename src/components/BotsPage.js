@@ -7,6 +7,16 @@ function BotsPage() {
   const [bots, setBots] = useState([]);
 
   const API = "http://localhost:8002/bots"
+  
+  //event listener for botcollection
+  function enlistBots(id) {
+    //console.log(id)
+    setBots(bots.map(bot => bot.id === id ? { ...bot, enlisted: true} : bot))
+  }
+
+  function removeBots(id) {
+    setBots(bots.map(bot => bot.id === id ? { ...bot, enlisted: false } : bot))
+  }
 
   useEffect(() => {
     fetch(API)
@@ -17,8 +27,8 @@ function BotsPage() {
 
     return (
       <div>
-        <YourBotArmy bot={bots}/>
-        <BotCollection bots={bots} />
+        <YourBotArmy bots={bots.filter(bot => bot.enlisted)} handleClick={removeBots}/>
+        <BotCollection bots={bots} handleClick={enlistBots}/>
       </div>
     )
 }
