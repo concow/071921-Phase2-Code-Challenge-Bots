@@ -10,38 +10,41 @@ const botTypeClasses = {
 };
 
 function BotCard({ bot }) {
+  //destructure
+  const { id, name, health, damage, armor, bot_class, catchphrase, avatar_url } = bot
+
   return (
     <div className="ui column">
       <div
         className="ui card"
-        key={bot.id}
+        key={id}
         onClick={() => console.log("add code to connect event listener")}
       >
         <div className="image">
-          <img alt="oh no!" src={bot.avatar_url} />
+          <img alt="oh no!" src={avatar_url} />
         </div>
         <div className="content">
           <div className="header">
-            {bot.name}
-            <i className={botTypeClasses[bot.bot_class]} />
+            {name}
+            <i className={botTypeClasses[bot_class]} />
           </div>
           <div className="meta text-wrap">
-            <small>{bot.catchphrase}</small>
+            <small>{catchphrase}</small>
           </div>
         </div>
         <div className="extra content">
           <span>
             <i className="icon heartbeat" />
-            {bot.health}
+            {health}
           </span>
 
           <span>
             <i className="icon lightning" />
-            {bot.damage}
+            {damage}
           </span>
           <span>
             <i className="icon shield" />
-            {bot.armor}
+            {armor}
           </span>
           <span>
             <div className="ui center aligned segment basic">
