@@ -9,7 +9,7 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, handleClick }) {
+function BotCard({ bot, handleClick, deleteBot }) {
   //destructure
   //const { id, name, health, damage, armor, bot_class, catchphrase, avatar_url } = bots
 
@@ -50,9 +50,10 @@ function BotCard({ bot, handleClick }) {
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini red button"
-                onClick={() =>
-                  handleClick(bot.id)
-                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteBot(bot.id);
+                }}
               >
                 x
               </button>
